@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jsScripts.js"></script>
+</head>
+
+<body>
+    
+    	<header class="header">
+   			<h1>API Test Page</h1>
+        </header>
+        
+        <section class="section">
+   			<h2>Account Details</h2>
+   			<table class="center_table" id="acct_table">
+  		  		<tr>
+    				<td>Sort Code</td>
+    				<td></td>
+  				</tr>
+  				<tr>
+    				<td>Account</td>
+    				<td></td>
+  				</tr>	
+  		  		<tr>
+    				<td>Balance</td>
+    				<td></td>
+  				</tr>									
+  			</table>
+  			
+  			<form>
+  				<br>
+  				<h2>Bearer Token:</h2>
+  				<textarea class="textarea" id="bearerText">Input bearer token...</textarea>
+  			</form>
+  			
+        </section>
+        
+        <aside class="aside">
+        	<br>
+           	<button type="button" class="button" onclick="getAccountDetails()">Refresh</button>
+           	<br>
+           	<div id="progress">
+           		<img src="spinner.gif" height="100" width="100">  
+           	<div>     	
+        </aside>  
+        
+        <footer class="footer">
+   			<br>
+        </footer>
+
+</body>
+
+</html>
