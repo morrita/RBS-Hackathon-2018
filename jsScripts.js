@@ -1,14 +1,24 @@
 
 
-function getAccountDetails() {
+function getDetails(func_detail, subscription_token, account_id, url) {
 
-	var subscription_token = "f3c0503b730b465097a7b71d3a9eace2";
-//	var bearer_token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1jNTdkTzZRR1RWQndhTmsifQ.eyJleHAiOjE1Mzc4MTQ3MDYsIm5iZiI6MTUzNzgxMTEwNiwidmVyIjoiMS4wIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tL2Q1Zjg1NjgyLWY2N2EtNDQ0NC05MzY5LTJjNWVjMWEwZThjZC92Mi4wLyIsInN1YiI6ImY1Njc1NDZlLWQ4ODEtNDYzMi04ZmI3LTM4NTFkMzRkYjY2YiIsImF1ZCI6ImEwNmE3NGM1LWRlYTgtNGY4Ny1iYTc3LTlkZjZkMDMwODcyNSIsIm5vbmNlIjoiZGVmYXVsdE5vbmNlIiwiaWF0IjoxNTM3ODExMTA2LCJhdXRoX3RpbWUiOjE1Mzc4MTExMDYsIm9pZCI6ImY1Njc1NDZlLWQ4ODEtNDYzMi04ZmI3LTM4NTFkMzRkYjY2YiIsImdpdmVuX25hbWUiOiJUb20iLCJmYW1pbHlfbmFtZSI6Ik1vcnJpcyIsIm5hbWUiOiJUb20gTW9ycmlzIiwiZW1haWxzIjpbInRvbV9tb3JyaXNAYnRpbnRlcm5ldC5jb20iXSwidGZwIjoiQjJDXzFfU0kifQ.MiIIpTYbw82Ve3KFp9vRiyRFifmMN3abVqKRKKLUYKvIC8rObGqZb4sZQEzyUKW387CioSwDdBMLbwD3qKLGHntvO878rDnKO9cGTZuTYbF1M8C6W5YMZlZNVlCw-0shZ9zqMpkNmi9b0wlzG5tyOuuD6YeqKb_AISGelXGqIZmN24jEaK9dk7N8UC97zkh2iai-2QlUGN1oCuP5jbY09DQeSuO7wYnu_Ke9J4kegcz-ZxHe0qfM_A3l6kPEFOm6Z2UqPy9SyCtI49UIIDQWry-x_3HivGcfIoelA-tOPX09vWHv1kA3IMN9CWPSi77pxwxGZkmoN9nbkz6ewwSa-Q";
-	var account_id =  "6b0bfffc-6190-4a19-95fa-293d9fc02ed2";	
-	var url = "https://bluebank.azure-api.net/api/v0.7/accounts/";
-	var full_url = url + account_id;
-	var timeout = 2000;
+
+	var timeout = 10000;
 		
+		
+	if (func_detail == "Account") {
+		var full_url = url + account_id;	
+		
+	}
+	else if (func_detail == "Transactions") {
+		var full_url = url + account_id + "/transactions";
+	
+	}
+	else {
+		alert("func_detail passed to getDetails not recognized!");
+	
+	}
+			
 	var xhttp = new XMLHttpRequest();
 	
 	document.getElementById("progress").style.display = "block";
@@ -18,15 +28,44 @@ function getAccountDetails() {
     	if (this.readyState == 4) { 
     	
     		if (this.status == 200) {
-    			var sort_code = JSON.parse(this.responseText).sortCode;
-    	   		var account_number = JSON.parse(this.responseText).accountNumber;	
-    			var balance = JSON.parse(this.responseText).accountBalance;
+    		
+    			if (func_detail == "Account") {		//display account summary
     			
-    			document.getElementById("acct_table").rows[0].cells[1].innerHTML = sort_code;
-    			document.getElementById("acct_table").rows[1].cells[1].innerHTML = account_number;
-    			document.getElementById("acct_table").rows[2].cells[1].innerHTML = balance;
+    				var sort_code = JSON.parse(this.responseText).sortCode;
+    	   			var account_number = JSON.parse(this.responseText).accountNumber;	
+    				var balance = JSON.parse(this.responseText).accountBalance;
     			
-    			document.getElementById("progress").style.display = "none";
+    				document.getElementById("acct_table").rows[0].cells[1].innerHTML = sort_code;
+    				document.getElementById("acct_table").rows[1].cells[1].innerHTML = account_number;
+    				document.getElementById("acct_table").rows[2].cells[1].innerHTML = balance;
+    			
+    				document.getElementById("progress").style.display = "none";
+    			}
+    			else if (func_detail == "Transactions") {	// display transaction details
+    			
+    				var array_length = JSON.parse(this.responseText).results.length;
+    				var max_display_size = 20;
+    			
+    				for (var i = 0; i < max_display_size; i++) {
+    			
+    					var date_time = JSON.parse(this.responseText).results[array_length - i - 1].transactionDateTime;
+    	   				var description = JSON.parse(this.responseText).results[array_length - i - 1].transactionDescription;	
+    	   				var amount = JSON.parse(this.responseText).results[array_length - i - 1].transactionAmount;	
+    					var balance = JSON.parse(this.responseText).results[array_length - i - 1].accountBalance;	    				
+    				
+    					date_field = date_time.split('T')[0];
+    					long_time_field = date_time.split('T')[1];
+    					time_field = long_time_field.split('.')[0];
+    				    				
+    					document.getElementById("txn_table").rows[i + 1].cells[0].innerHTML = date_field + " " + time_field;
+    					document.getElementById("txn_table").rows[i + 1].cells[1].innerHTML = description;
+     					document.getElementById("txn_table").rows[i + 1].cells[2].innerHTML = amount;   				
+    					document.getElementById("txn_table").rows[i + 1].cells[3].innerHTML = balance;    				
+    				
+    				    document.getElementById("progress").style.display = "none";
+    				} 			  			
+    			
+    			}
         	}	
         	else if (this.status == 403) {
     			document.getElementById("progress").style.display = "none";
@@ -41,9 +80,18 @@ function getAccountDetails() {
     xhttp.setRequestHeader('Authorization', bearer_token);
     xhttp.timeout = timeout;
     xhttp.ontimeout = function(){
-    	alert("Request Timed Out!");
+    	alert("getAccountDetails Request Timed Out!");
     }
-    xhttp.send(null);
-    
+    xhttp.send(null);   
+}
+
+
+function refreshDetails() {	
+	var subscription_token = "f3c0503b730b465097a7b71d3a9eace2";
+	var account_id =  "6b0bfffc-6190-4a19-95fa-293d9fc02ed2";	
+	var url = "https://bluebank.azure-api.net/api/v0.7/accounts/";
+	getDetails("Account", subscription_token, account_id, url); 
+	getDetails("Transactions", subscription_token, account_id, url); 
+	
 }
 

@@ -23,7 +23,7 @@ body {
     background: white;
     text-align: center;
     width: 80%;
-    height: 500px;
+    height: 1500px;
 }
 
 .aside {
@@ -32,7 +32,7 @@ body {
     background: white;
 	color: #dddddd;
 	width: 20%;
-	height: 500px;
+	height: 1500px;
 }
 
 .button {
@@ -58,6 +58,13 @@ body {
 	margin: auto;
 }
 
+
+.transaction_table {
+    font-size: 16px;
+	margin: auto;
+}
+
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -71,6 +78,12 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+    height: 30px;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+    height: 30px;
 }
 
 #progress {
