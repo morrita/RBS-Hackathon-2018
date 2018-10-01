@@ -12,12 +12,12 @@ function getDetails(func_detail, subscription_token, account_id, url) {
 	}
 	else if (func_detail == "Transactions") {
 		var full_url = url + account_id + "/transactions";
-	
 	}
 	else {
-		alert("func_detail passed to getDetails not recognized!");
+		var full_url = url + account_id;	
 	
 	}
+
 			
 	var xhttp = new XMLHttpRequest();
 	
@@ -30,15 +30,14 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     		if (this.status == 200) {
     		
     			if (func_detail == "Account") {		//display account summary
-    				var acct_name = JSON.parse(this.responseText).accountFriendlyName;
+    			
     				var sort_code = JSON.parse(this.responseText).sortCode;
     	   			var account_number = JSON.parse(this.responseText).accountNumber;	
     				var balance = JSON.parse(this.responseText).accountBalance;
     			
-    			    document.getElementById("acct_table").rows[0].cells[1].innerHTML = acct_name;
-    				document.getElementById("acct_table").rows[1].cells[1].innerHTML = sort_code;
-    				document.getElementById("acct_table").rows[2].cells[1].innerHTML = account_number;
-    				document.getElementById("acct_table").rows[3].cells[1].innerHTML = '£' + balance;
+    				document.getElementById("acct_table").rows[0].cells[1].innerHTML = sort_code;
+    				document.getElementById("acct_table").rows[1].cells[1].innerHTML = account_number;
+    				document.getElementById("acct_table").rows[2].cells[1].innerHTML = balance;
     			
     				document.getElementById("progress").style.display = "none";
     			}
@@ -47,7 +46,7 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     				var array_length = JSON.parse(this.responseText).results.length;
     				var max_display_size = 20;
     			
-    				for (var i = 0; i < max_display_size; i++) {
+    				for (var i = 1; i < max_display_size; i++) {
     			
     					var date_time = JSON.parse(this.responseText).results[array_length - i - 1].transactionDateTime;
     	   				var description = JSON.parse(this.responseText).results[array_length - i - 1].transactionDescription;	
@@ -67,6 +66,40 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     				} 			  			
     			
     			}
+    			else if (func_detail == "Group") {	// display group details
+    			
+    			
+      				document.getElementById("txn_table").rows[1].cells[0].innerHTML = "2018-09-23";
+    				document.getElementById("txn_table").rows[1].cells[1].innerHTML = "Restaurant Group";
+     				document.getElementById("txn_table").rows[1].cells[2].innerHTML = "";   				
+    				document.getElementById("txn_table").rows[1].cells[3].innerHTML = "-£25";     			
+    					
+    				document.getElementById("txn_table").rows[2].cells[0].innerHTML = "2018-09-30 16:19:52";
+    				document.getElementById("txn_table").rows[2].cells[1].innerHTML = "Tom Walker";
+     				document.getElementById("txn_table").rows[2].cells[2].innerHTML = "£25";   				
+    				document.getElementById("txn_table").rows[2].cells[3].innerHTML = ""; 
+ 
+     				document.getElementById("txn_table").rows[3].cells[0].innerHTML = "2018-09-27 18:10:42";
+    				document.getElementById("txn_table").rows[3].cells[1].innerHTML = "Kate Grant";
+     				document.getElementById("txn_table").rows[3].cells[2].innerHTML = "£25";   				
+    				document.getElementById("txn_table").rows[3].cells[3].innerHTML = "";   
+    				
+    				document.getElementById("txn_table").rows[4].cells[0].innerHTML = "2018-09-25 23:11:12";
+    				document.getElementById("txn_table").rows[4].cells[1].innerHTML = "Adam Willis";
+     				document.getElementById("txn_table").rows[4].cells[2].innerHTML = "£25";   				
+    				document.getElementById("txn_table").rows[4].cells[3].innerHTML = "";     							
+    				
+      				document.getElementById("txn_table").rows[5].cells[0].innerHTML = "2018-09-23 10:59:50";
+    				document.getElementById("txn_table").rows[5].cells[1].innerHTML = "Pizza Express";
+     				document.getElementById("txn_table").rows[5].cells[2].innerHTML = "-£100";   				
+    				document.getElementById("txn_table").rows[5].cells[3].innerHTML = "";    				
+    				
+    				
+    				
+    				  
+    			
+    			}
+    			
         	}	
         	else if (this.status == 403) {
     			document.getElementById("progress").style.display = "none";
@@ -92,7 +125,8 @@ function refreshDetails() {
 	var account_id =  "6b0bfffc-6190-4a19-95fa-293d9fc02ed2";	
 	var url = "https://bluebank.azure-api.net/api/v0.7/accounts/";
 	getDetails("Account", subscription_token, account_id, url); 
-	getDetails("Transactions", subscription_token, account_id, url); 
+//	getDetails("Transactions", subscription_token, account_id, url); 
+	getDetails("Group", subscription_token, account_id, url); 
 	
 }
 
