@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jsScripts.js"></script>
+</head>
+
+<body>
+    
+    	<header class="header">
+   			<h1>API Test Page</h1>
+        </header>
+        
+        <section class="section">	
+   			 <form>
+  				<br>
+  				<h2>Bearer Token:</h2>
+  				<textarea class="textarea" id=bearerText>Input bearer token...</textarea>
+  			</form>
+  			
+  			<br>
+  			<h2>Account Details</h2>
+  			
+   			<table class="center_table" id="acct_table">
+   			  	<tr>
+    				<td>Account Name</td>
+    				<td></td>
+  				</tr>
+  		  		<tr>
+    				<td>Sort Code</td>
+    				<td></td>
+  				</tr>
+  				<tr>
+    				<td>Account</td>
+    				<td></td>
+  				</tr>	
+  		  		<tr>
+    				<td>Balance</td>
+    				<td></td>
+  				</tr>									
+  			</table>
+  			
+  			<br>
+  			<h2>Account Transactions</h2>
+  			
+  						
+  			<div id="table_wrapper">
+  				<div id="header">
+  		    		<div id="head1">Date/Time</div>
+   		    		<div id="head2">Description</div>
+    				<div id="head3">Amount (£)</div>
+    				<div id="head4">Balance (£)</div>
+  				</div>
+  				<div id="tbody">
+    				<table class="transaction_table" id="txn_table">
+    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				    				
+      					<tr>
+        					<td class="td1">1</td>
+        					<td class="td2">2</td>
+        					<td class="td3">3</td>
+        					<td class="td4">4</td>
+      					</tr>
+     				   				
+      				
+        
+    				</table>
+  				</div>
+			</div>
+  
+        </section>
+        
+        <aside class="aside">
+        	<br><br><br><br><br>
+           	<button type="button" class="button" onclick="refreshDetails()">Authenticate</button>
+           	<br>
+           	<div id="progress">
+           		<img src="spinner.gif" height="100" min-height="100" width="100">  
+           	</div>   
+           	<br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br>     	
+            <br><br><br><br><br><br>      	
+            <button type="button" class="button" onclick="getTransactions()">Transactions</button>    	
+           	
+           	  	
+        </aside>  
+        
+        <footer class="footer">
+   			<br>
+        </footer>
+
+</body>
+
+</html>

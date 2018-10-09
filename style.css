@@ -18,21 +18,13 @@ body {
     text-align: center;
 }
 
-.section {
-	float: left;
-    background: white;
-    text-align: center;
-    width: 80%;
-    height: 1500px;
-}
-
 .aside {
 	float: left;
 	text-align: center;
     background: white;
 	color: #dddddd;
 	width: 20%;
-	height: 1500px;
+	height: 1000px;
 }
 
 .button {
@@ -47,47 +39,18 @@ body {
     background-color: #6666ff;
 }
 
-.footer {
-	clear: both;
-    background: #000080;
-    color: white;
-    text-align: center;
-}
-
-.center_table {
-	margin: auto;
-}
-
-
-.transaction_table {
-    font-size: 16px;
-	margin: auto;
-}
-
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-    height: 30px;
-}
-
-tr:nth-child(odd) {
-    background-color: white;
-    height: 30px;
-}
-
 #progress {
 	display: none;
+	min-height: 100px;
+}
+
+
+.section {
+	float: left;
+    background: white;
+    text-align: center;
+    width: 80%;
+    height: 1000px;
 }
 
 .textarea {
@@ -101,6 +64,67 @@ tr:nth-child(odd) {
     font-size: 16px;
     resize: none;
 }
+
+.center_table {
+	margin: auto;
+    border-collapse: collapse;
+    width: 100%;	
+}
+
+
+.center_table td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 1px 5px;
+}
+
+.center_table tr:nth-child(odd) {
+    background-color: #dddddd;
+    height: 24px;
+}
+
+.center_table tr:nth-child(even) {
+    background-color: white;
+    height: 24px;
+} 
+
+#table_wrapper {background:#dddddd;border:1px solid #dddddd;float:left;}
+#tbody{height:218px;overflow-y:auto;width:800px;background:white;}
+table{border-collapse:collapse; width:100%;}
+td{padding:1px 5px; /* pixels */
+    border-right:1px solid #dddddd; /* to avoid the hacks for the padding */
+    border-bottom:1px solid #dddddd;} 
+.td0{width:200px;text-align: center;}
+.td1{width:300px; text-align:left;}
+.td2{width:100px;text-align: center;}
+.td3{border-right-width:0;text-align: center;} /* optional */
+
+
+.transaction_table tr:nth-child(even) {
+    background-color: #dddddd;
+    height: 24px;
+}
+
+.transaction_table tr:nth-child(odd) {
+    background-color: white;
+    height: 24px;
+} 
+
+
+#header{width:800px;background:#dddddd;border-bottom:1px solid #dddddd;}
+#header div{padding:1px 5px;float:left;border-right:1px solid #dddddd;}
+#header #head1{width:200px; height 24px;} /* the same as td1 */
+#header #head2{width:300px; height 24px;} /* the same as td2 */
+#header #head3{width:100px; height 24px;} /* the same as td2 */
+#header #head4{float:none;border-right-width:0;height 24px;}
+
+.footer {
+	clear: both;
+    background: #000080;
+    color: white;
+    text-align: center;
+}
+
 
 
 
