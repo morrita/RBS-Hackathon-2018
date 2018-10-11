@@ -1,4 +1,14 @@
 
+function clearTable(table_name) {
+
+	var tableRef = document.getElementById(table_name);
+ 	while ( tableRef.rows.length > 0 )
+ 	{
+  		tableRef.deleteRow(0);
+ 	}
+}	
+
+
 
 function getDetails(func_detail, subscription_token, account_id, url) {
 
@@ -21,7 +31,7 @@ function getDetails(func_detail, subscription_token, account_id, url) {
 			
 	var xhttp = new XMLHttpRequest();
 	
-	document.getElementById("progress").style.display = "block";
+	document.getElementById("progress").style.visibility = "visible";
 	bearer_token = document.getElementById("bearerText").value;
 	
 	xhttp.onreadystatechange = function() {
@@ -40,7 +50,7 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     				document.getElementById("acct_table").rows[2].cells[1].innerHTML = account_number;
     				document.getElementById("acct_table").rows[3].cells[1].innerHTML = '£' + balance;
     			
-    				document.getElementById("progress").style.display = "none";
+
     			}
     			else if (func_detail == "Transactions") {	// display transaction details
     			
@@ -48,6 +58,7 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     				var max_display_size = 50; 
     				
     				var tab = document.getElementById("txn_table");
+    				clearTable("txn_table");
 		
     				for (var i = 0; i < array_length; i++) {
     				
@@ -89,13 +100,13 @@ function getDetails(func_detail, subscription_token, account_id, url) {
     				    }
     				    
     				} 	
-    				
-    				document.getElementById("progress").style.display = "none";		  			
-    			
+
     			}
+    			
+    			document.getElementById("progress").style.visibility = "hidden";	
         	}	
         	else if (this.status == 403) {
-    			document.getElementById("progress").style.display = "none";
+    			document.getElementById("progress").style.visibility = "hidden";
     			alert ("403: Access Forbidden!");
         	}       	     	
         }

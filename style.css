@@ -24,7 +24,7 @@ body {
     background: white;
 	color: #dddddd;
 	width: 20%;
-	height: 1000px;
+	height: 800px;
 }
 
 .button {
@@ -40,7 +40,8 @@ body {
 }
 
 #progress {
-	display: none;
+	/*display: none;*/
+	visibility: hidden;
 	min-height: 100px;
 }
 
@@ -50,7 +51,7 @@ body {
     background: white;
     text-align: center;
     width: 80%;
-    height: 1000px;
+    height: 800px;
 }
 
 .textarea {
